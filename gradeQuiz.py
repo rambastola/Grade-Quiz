@@ -6,6 +6,12 @@ import re
 df = pd.read_excel('/Users/rambastola/Desktop/CSC124.xlsx')
 q1, q2, q3, q4, q5 = df['Question 1'],df['Question 2'],df['Question 3'],df['Question 4'],df['Question 5']
 
+def grade(student, soloPoints):
+    s = []
+    s.append(student)
+    print(s)
+
+
 def studentAnswers(students, correctAns, quizNum, user):
     """
     students: all the student
@@ -16,9 +22,9 @@ def studentAnswers(students, correctAns, quizNum, user):
     for i in range(len(students[0])):
         if quizNum[i] == correctAns[user][0]: #choose the correct set of answers
             student = re.sub('[.]', '', students[0][i]) #removing '.' from some names
-            gradeAnswers(student,correctAns[user],[q1[i], q2[i], q3[i], q4[i], q5[i]])
+            evalAnswers(student,correctAns[user],[q1[i], q2[i], q3[i], q4[i], q5[i]])
 
-def gradeAnswers(student, correctAns, stdAns):
+def evalAnswers(student, correctAns, stdAns):
     """
     student: str of students
     correctAns: array of correct answers
@@ -27,6 +33,8 @@ def gradeAnswers(student, correctAns, stdAns):
 
     soloPoints = 0
     groupPoints = 0
+    # for name in args:
+
 
     if student.count(',') == 1: #single quiz. up to 10 points
         if correctAns[1] == stdAns[0]:
@@ -39,7 +47,6 @@ def gradeAnswers(student, correctAns, stdAns):
             soloPoints +=2
         if correctAns[5] == stdAns[4]:
             soloPoints +=2
-        print(student, soloPoints)
 
     elif student.count(',') > 1: #group quiz. up to 5 points
         if correctAns[1] == stdAns[0]:
@@ -52,7 +59,7 @@ def gradeAnswers(student, correctAns, stdAns):
             groupPoints +=1
         if correctAns[5] == stdAns[4]:
             groupPoints +=1
-        # print(student, groupPoints)
+    grade(student, soloPoints, )
 
 
 def main():
