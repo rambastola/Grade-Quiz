@@ -18,9 +18,7 @@ def grade(solo, group):
             if key in k:
                 gp = group[k]
                 official[key] = gp + solo[key]
-
     print(official)
-
 
 def studentAnswers(students, correctAns, quizNum, user):
     """
@@ -73,8 +71,12 @@ def studentAnswers(students, correctAns, quizNum, user):
 
 
 def main():
-    user = int(input("Which quiz do you want to grade? ")) # which quiz to grade?
-    ## TODO: check for user input. size, int
+    while True:
+        try:
+            user = int(input("Which quiz do you want to grade? ")) # which quiz to grade?
+            break
+        except ValueError:
+            print("You must enter a numer. For example, for quiz 5, enter '5'")
 
     names = df['What is (are) your name(s)?'] #student and quiz names
     quizNum = df['Which quiz are you submitting answers for?'] # all of the quiz
